@@ -2,12 +2,15 @@
 #include<math.h>
 int main()
 {
-    int n,l,sq;
+    int n;
     scanf("%d",&n);
-    sq=sqrt(n);
-    l=sq*sq;
-    if(l==n)
-    printf("True");
+    int s=sqrt(n);
+    if(s*s==n)
+    {
+        printf("True");
+    }
     else
-    printf("False");
+    {
+        printf("False");
+    }
 }
