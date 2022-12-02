@@ -1,69 +1,47 @@
-#include <stdio.h>
-#include <string.h>
-
-int convert(char);  
-
-int main ()
+#include<stdio.h>
+#include<string.h>
+int main()
 {
-   int i = 0, num = 0;
-   char romanNumber[100]; 
-
-
-   scanf("%s", romanNumber);
-
-   while(romanNumber[ i ])
-   {
-   
-      if(convert(romanNumber[ i ]) < 0 )
-      {
-
-         return 0;
-      }
-
-    
-      if((strlen(romanNumber) - i ) > 2)
-      {
-         if(convert(romanNumber[ i ]) < convert(romanNumber[i + 2]))
-         {
-            printf("
-Invalid Roman Number.
-");
-            return 0;
-         }
-      }
-
-     
-      if(convert(romanNumber[ i ]) >= convert(romanNumber[i + 1]))
-         num = num + convert(romanNumber[ i ]);
-      else
-      {
-         num = num + (convert(romanNumber[i + 1]) - convert(romanNumber[ i ]));
-         i++;
-      }
-      i++;
-   }
-
-
-   printf("%d", num);
-   return 0;
-}
-
-
-int convert(char ch)
-{
-   int value = 0;
-
-   switch(ch)
-   {
-      case 'I': value = 1; break;
-      case 'V': value = 5; break;
-      case 'X': value = 10; break;
-      case 'L': value = 50; break;
-      case 'C': value = 100; break;
-      case 'D': value = 500; break;
-      case 'M': value = 1000; break;
-      case NULL: value = 0; break;
-      default: value = -1;
-   }
-   return value;
+    char str[1000];
+    scanf("%[^
+]s",str);
+    int val=0,i,j;
+    int len=strlen(str);
+    for (i=0; i<len; i++)
+    {
+        if (str[i]=='I')
+            val+=1;
+        if (str[i]=='V')
+            if (str[i-1]=='I')
+                val+=3;
+            else
+                val+=5;
+        if (str[i]=='X')
+            if (str[i-1]=='I')
+                val+=8;
+            else
+                val+=10;
+        if (str[i]=='L')
+            if (str[i-1]=='X')
+                val+=30;
+            else
+                val+=50;
+        if (str[i]=='C')
+            if (str[i-1]=='X')
+                val+=80;
+            else
+                val+=100;
+        if (str[i]=='D')
+            if (str[i-1]=='C')
+                val+=300;
+            else
+                val+=500;
+        if (str[i]=='M')
+            if (str[i-1]=='C')
+                val+=800;
+            else
+                val+=1000;
+    }
+    printf("%d",val);
+    return 0;
 }
